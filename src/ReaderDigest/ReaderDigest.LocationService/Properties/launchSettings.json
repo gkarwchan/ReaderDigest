@@ -1,0 +1,13 @@
+﻿{
+  "profiles": {
+    "ReaderDigest.LocationService": {
+      "commandName": "Project",
+      "dotnetRunMessages": true,
+      "launchBrowser": false,
+      "applicationUrl": "http://localhost:5040;https://localhost:7074",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}
