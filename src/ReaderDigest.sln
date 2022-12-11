@@ -10,6 +10,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReaderDigest.WebApi", "Read
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReaderDigest.GpsService", "ReaderDigest.GpsService\ReaderDigest.GpsService.csproj", "{608365D6-59DB-4D15-8B81-6FDF5B2299C0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReaderDigest.TestTool", "ReaderDigest.TestTool\ReaderDigest.TestTool.csproj", "{3D865835-87A9-4776-9E46-997EEE4278C6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,5 +38,9 @@ Global
 		{608365D6-59DB-4D15-8B81-6FDF5B2299C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{608365D6-59DB-4D15-8B81-6FDF5B2299C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{608365D6-59DB-4D15-8B81-6FDF5B2299C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D865835-87A9-4776-9E46-997EEE4278C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D865835-87A9-4776-9E46-997EEE4278C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D865835-87A9-4776-9E46-997EEE4278C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D865835-87A9-4776-9E46-997EEE4278C6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
