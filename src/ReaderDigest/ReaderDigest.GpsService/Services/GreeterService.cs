@@ -1,7 +1,7 @@
 using Grpc.Core;
-using ReaderDigest.LocationService;
+using ReaderDigest.GpsService;
 
-namespace ReaderDigest.LocationService.Services;
+namespace ReaderDigest.GpsService.Services;
 
 public class GreeterService : Greeter.GreeterBase
 {
