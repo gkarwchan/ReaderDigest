@@ -3,7 +3,11 @@ using ReaderDigest.WebApi.Models;
 
 namespace ReaderDigest.WebApi.Services;
 
-public class QuoteSvc
+public interface IQuoteSvc
+{
+    Task<Quote> CreateQuoteAsync(string originCity, string destinationCity);
+}
+public class QuoteSvc : IQuoteSvc
 {
     private readonly IDistanceInfoSvc _distanceInfoSvc;
 

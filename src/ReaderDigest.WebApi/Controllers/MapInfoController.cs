@@ -1,6 +1,7 @@
 ﻿
 using Microsoft.AspNetCore.Mvc;
-using ReaderDigest.GoogleMapInfo;
+using ReaderDigest.WebApi.Models;
+using ReaderDigest.WebApi.Services;
 
 namespace ReaderDigest.WebApi.Controllers;
 
@@ -8,15 +9,15 @@ namespace ReaderDigest.WebApi.Controllers;
 [Route("[controller]")]
 public class MapInfoController : ControllerBase
 {
-    private readonly GoogleDistanceService _distanceService;
+    private readonly IQuoteSvc _quoteSvc;
 
-    public MapInfoController(GoogleDistanceService distanceService)
+    public MapInfoController(IQuoteSvc distanceService)
     {
-        _distanceService = distanceService;
+        _quoteSvc = distanceService;
     }
     [HttpGet()]
-    public async Task<GoogleDistanceData> GetDistance(string originCity, string destinationCity)
+    public async Task<Quote> GetDistance(string originCity, string destinationCity)
     {
-        return await _distanceService.GetMapDistance(originCity, destinationCity);
+        return await _quoteSvc.CreateQuoteAsync(originCity, destinationCity);
     }
 }

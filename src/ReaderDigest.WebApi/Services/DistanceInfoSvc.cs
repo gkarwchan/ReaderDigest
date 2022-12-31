@@ -1,5 +1,7 @@
 ﻿
-using System.Text.Json;
+using Grpc.Net.Client;
+using ReaderDigest.LocationService;
+using ReaderDigest.WebApi.Models;
 
 namespace ReaderDigest.WebApi.Services;
 
@@ -10,42 +12,18 @@ public interface IDistanceInfoSvc
 
 public class DistanceInfoSvc : IDistanceInfoSvc
 {
-    private readonly IHttpClientFactory _httpClientFactory;
-
-    public DistanceInfoSvc(IHttpClientFactory httpClientFactory)
-    {
-        _httpClientFactory = httpClientFactory;
-    }
 
     public async Task<(int, string)> GetDistanceAsync(string originCity, string destinationCity)
     {
-        var httpClient = _httpClientFactory.CreateClient("DistanceMicroservice");
-        var microserviceUtl = $"?originCity={originCity}&destinationCity={destinationCity}";
-        var responseStream = await httpClient.GetStreamAsync(microserviceUtl);
-        var distanceData = await JsonSerializer.DeserializeAsync<MapDistanceInfo>(responseStream);
-        var distance = 0;
-        var distanceType = "";
-        foreach (var row in distanceData.rows)
+        var channel = GrpcChannel.ForAddress(new Uri("https://localhost:7074"));
+        var client = new DistanceInfo.DistanceInfoClient(channel);
+        var response = await client.GetDistanceAsync(new Cities {OriginCity = originCity, DestinationCity = destinationCity});
+        if (int.TryParse(CleanDistanceInfo(response.Miles), out var dist))
         {
-            foreach (var element in row.elements)
-            {
-                if (int.TryParse(CleanDistanceInfo(element.distance.text), out var distanceConverted))
-                {
-                    distance += distanceConverted;
-                    if (element.distance.text.EndsWith("mi"))
-                    {
-                        distanceType = "miles";
-                    }
-
-                    if (element.distance.text.EndsWith("km"))
-                    {
-                        distanceType = "kilometers";
-                    }
-                }
-            }
+            return (dist, response.Miles[^2..]);
         }
 
-        return (distance, distanceType);
+        throw new ArgumentException("Cannot read the value");
     }
     
     private string CleanDistanceInfo(string value)

@@ -19,7 +19,17 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\ReaderDigest.GoogleMapInfo\ReaderDigest.GoogleMapInfo.csproj" />
+        <PackageReference Include="Google.Protobuf" Version="3.21.5" />
+        <PackageReference Include="Grpc.Net.ClientFactory" Version="2.49.0" />
+        <PackageReference Include="Grpc.Tools" Version="2.49.0">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
     </ItemGroup>
 
+    <ItemGroup>
+        <Protobuf Include="..\ReaderDigest.LocationService\Protos\distance.proto" GrpcServices="Client">
+            <Link>Protos\distance.proto</Link>
+        </Protobuf>
+    </ItemGroup>
 </Project>

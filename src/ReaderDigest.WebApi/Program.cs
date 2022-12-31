@@ -1,9 +1,11 @@
-using ReaderDigest.GoogleMapInfo;
+
+using ReaderDigest.WebApi.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddTransient<GoogleDistanceService>();
+builder.Services.AddTransient<IDistanceInfoSvc, DistanceInfoSvc>();
+builder.Services.AddTransient<IQuoteSvc, QuoteSvc>();
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
